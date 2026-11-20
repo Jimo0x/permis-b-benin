@@ -296,6 +296,76 @@ const COURS = [
   },
 
   {
+    id: "conduite-difficile",
+    icon: "🌧️",
+    title: "Conduire la nuit, sous la pluie ou dans le brouillard",
+    sections: [
+      {
+        heading: "La conduite de nuit",
+        html: `<ul>
+          <li>La vision est réduite : on détecte un obstacle ou un piéton bien plus tard que de jour, il faut donc <strong>réduire sa vitesse</strong>.</li>
+          <li>Utiliser les <strong>feux de croisement</strong> en présence d'autres véhicules ou en agglomération, et les <strong>feux de route</strong> uniquement sur route non éclairée et sans véhicule en face.</li>
+          <li>Basculer immédiatement en feux de croisement en croisant un autre véhicule, pour ne pas l'éblouir.</li>
+          <li>Garder le pare-brise et les phares propres : la saleté réduit fortement l'efficacité de l'éclairage et la visibilité.</li>
+        </ul>`
+      },
+      {
+        heading: "La conduite sous forte pluie",
+        html: `<ul>
+          <li>La chaussée mouillée augmente nettement les <strong>distances de freinage</strong> : il faut ralentir et augmenter la distance de sécurité.</li>
+          <li>Le phénomène d'<strong>aquaplaning</strong> (perte d'adhérence sur une flaque d'eau à vitesse élevée) peut faire perdre le contrôle du véhicule : en cas d'aquaplaning, il faut relâcher l'accélérateur sans freiner brutalement ni donner de coup de volant.</li>
+          <li>Allumer les feux de croisement, même en journée, pour être mieux vu des autres usagers.</li>
+          <li>Au Bénin, les fortes pluies peuvent rapidement inonder certaines voies : il faut éviter de s'engager dans une zone d'eau dont on ne connaît pas la profondeur.</li>
+        </ul>`
+      },
+      {
+        heading: "Le brouillard ou la poussière (harmattan)",
+        html: `<ul>
+          <li>Réduire fortement la vitesse et augmenter la distance de sécurité, la visibilité pouvant chuter à quelques mètres.</li>
+          <li>Utiliser les feux de croisement (et les feux de brouillard si le véhicule en est équipé), jamais les feux de route qui se reflètent sur le brouillard et réduisent encore la visibilité.</li>
+          <li>Éviter de suivre les feux arrière du véhicule précédent pour se repérer : garder sa propre distance de sécurité.</li>
+        </ul>`
+      }
+    ]
+  },
+
+  {
+    id: "deux-roues-benin",
+    icon: "🏍️",
+    title: "Motos, zémidjans et transport urbain",
+    sections: [
+      {
+        heading: "Une place centrale dans la circulation béninoise",
+        html: `<p>Les motos et taxis-motos (<strong>zémidjans</strong>) représentent une part très importante de la circulation urbaine au Bénin. Qu'on soit conducteur de voiture ou de deux-roues, bien connaître les règles qui les concernent améliore la sécurité de tous.</p>`
+      },
+      {
+        heading: "Règles spécifiques aux deux-roues",
+        html: `<ul>
+          <li>Le <strong>casque homologué, attaché</strong>, est obligatoire pour le conducteur et le passager.</li>
+          <li>Les deux-roues doivent circuler <strong>sur la chaussée</strong>, pas sur les trottoirs réservés aux piétons.</li>
+          <li>Le <strong>surnombre de passagers</strong> (plus d'un passager derrière le conducteur, selon le type d'engin) est dangereux et généralement interdit.</li>
+          <li>Comme tout véhicule, une moto doit respecter les <strong>feux, les STOP et les limitations de vitesse</strong>.</li>
+        </ul>`
+      },
+      {
+        heading: "Conseils pour les conducteurs de voiture face aux deux-roues",
+        html: `<ul>
+          <li>Les deux-roues sont plus petits et peuvent se trouver dans un <strong>angle mort</strong> : toujours vérifier avant de tourner, dépasser ou changer de voie.</li>
+          <li>Garder une <strong>distance latérale suffisante</strong> lors d'un dépassement de moto, en particulier sur chaussée dégradée où le deux-roues peut faire un écart pour éviter un nid-de-poule.</li>
+          <li>Anticiper les arrêts fréquents des taxis-motos pour déposer ou prendre des clients, souvent sans signalisation préalable.</li>
+        </ul>`
+      },
+      {
+        heading: "Le transport de marchandises ou de passagers",
+        html: `<ul>
+          <li>Un chargement sur une moto doit être <strong>bien équilibré et attaché</strong>, sans dépasser excessivement de part et d'autre (risque de déséquilibre et de gêne pour les autres usagers).</li>
+          <li>Le conducteur d'un taxi-moto reste responsable de la <strong>sécurité de son passager</strong> (casque, vitesse adaptée, prudence dans les manœuvres).</li>
+        </ul>`
+      }
+    ]
+  },
+
+  {
     id: "environnement",
     icon: "🌱",
     title: "Éco-conduite et environnement",

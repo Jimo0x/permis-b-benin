@@ -41,6 +41,7 @@ function navigate(view, params) {
   else if (view === "coursDetail") renderCoursDetail(params.id);
   else if (view === "qcm") renderQcmMenu();
   else if (view === "panneaux") renderPanneaux();
+  else if (view === "progres") renderProgres();
   else if (view === "quiz") startQuiz(params);
   updateHeaderScore();
 }
@@ -202,6 +203,63 @@ function renderPanneaux() {
       draw(chip.dataset.cat);
     });
   });
+}
+
+/* ---------------------------- Progression ---------------------------- */
+
+function renderProgres() {
+  const pct = state.answeredTotal > 0 ? Math.round((state.correctTotal / state.answeredTotal) * 100) : 0;
+  const bestExam = state.examScores.length ? Math.max(...state.examScores.map(s => s.score)) : null;
+  const lastExams = state.examScores.slice(-5).reverse();
+
+  const chapterRows = COURS.map(c => {
+    const chapterQs = QUESTIONS_BY_CHAPTER[c.id] || [];
+    const total = chapterQs.length;
+    const seen = chapterQs.filter(q => state.correct[q.id] || state.wrong[q.id]).length;
+    const correct = chapterQs.filter(q => state.correct[q.id]).length;
+    const chapterPct = seen > 0 ? Math.round((correct / seen) * 100) : 0;
+    return `
+      <div class="card" style="padding:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <strong style="color:#fff;font-size:.9rem;">${c.icon} ${c.title}</strong>
+          <span style="font-size:.78rem;color:var(--text-dim);">${seen}/${total} vues</span>
+        </div>
+        <div class="bar" style="height:8px;background:var(--border);border-radius:999px;overflow:hidden;">
+          <div style="height:100%;width:${chapterPct}%;background:${chapterPct >= 70 || seen === 0 ? 'var(--red)' : '#e0a821'};"></div>
+        </div>
+        <div style="font-size:.74rem;color:var(--text-dim);margin-top:4px;">${seen > 0 ? chapterPct + "% de bonnes réponses" : "Pas encore commencé"}</div>
+      </div>
+    `;
+  }).join("");
+
+  app.innerHTML = `
+    <h1>Ma progression</h1>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="num">${state.answeredTotal}</div><div class="label">Questions faites</div></div>
+      <div class="stat-box"><div class="num">${pct}%</div><div class="label">Taux global</div></div>
+      <div class="stat-box"><div class="num">${bestExam !== null ? bestExam + "/20" : "—"}</div><div class="label">Meilleur blanc</div></div>
+    </div>
+
+    ${lastExams.length ? `
+      <h2>Derniers examens blancs</h2>
+      <div class="card">
+        ${lastExams.map(e => `
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.85rem;">
+            <span>${new Date(e.date).toLocaleDateString("fr-FR")}</span>
+            <span style="color:${e.score >= 14 ? 'var(--green)' : 'var(--red)'};font-weight:700;">${e.score}/20</span>
+          </div>
+        `).join("")}
+      </div>
+    ` : ""}
+
+    <h2>Détail par chapitre</h2>
+    ${chapterRows}
+
+    ${Object.keys(state.wrong).length ? `<button class="btn" id="reviewBtn" style="margin-top:10px;">Revoir mes ${Object.keys(state.wrong).length} erreurs →</button>` : ""}
+  `;
+
+  const reviewBtn = document.getElementById("reviewBtn");
+  if (reviewBtn) reviewBtn.addEventListener("click", () => navigate("quiz", { mode: "erreurs" }));
 }
 
 /* ---------------------------- Génération dynamique de questions "panneau" ---------------------------- */

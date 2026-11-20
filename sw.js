@@ -1,4 +1,4 @@
-const CACHE_NAME = "permis-b-benin-v1";
+const CACHE_NAME = "permis-b-benin-v2";
 const ASSETS = [
   "./",
   "index.html",
